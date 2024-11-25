@@ -1,0 +1,66 @@
+// SCSS Variables
+$primary-color: #007BFF;
+$inactive-color: #aaa;
+$active-color: #000;
+$border-color: #ccc;
+$underline-height: 1px;
+$tab-font-size: 1rem;
+$tab-font-family: "Roboto", sans-serif;
+$tab-font-weight: 300;
+$mobile-tab-font-size: .75rem;
+$max-width: 800px;
+$container-height: 40px;
+
+.tabs-container {
+    position: relative;
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    text-align: center;
+    height: $container-height;
+
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: $underline-height solid $border-color;
+        height: 100%;
+        @media (max-width: 768px) {
+            padding: 0 1rem;
+        }
+    }
+
+    .tab {
+        font-size: $tab-font-size;
+        color: $inactive-color; // Initial state
+        font-family: $tab-font-family;
+        font-weight: $tab-font-weight;
+        font-style: normal;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $primary-color; // Hover state
+        }
+
+        &.active {
+            color: $active-color; // Active state
+        }
+        @media (max-width: 768px) {
+            font-size: $mobile-tab-font-size;
+        }
+    }
+
+    // Pseudo-element for black underline
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: $underline-height;
+        background-color: $active-color;
+        width: var(--underline-width, 0); // Default to 0 if not set
+        left: var(--underline-left, 0); // Default to 0 if not set
+        transition: left 0.3s ease, width 0.3s ease;
+    }
+}
